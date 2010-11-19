@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+    		xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
+				xmlns:vis="sparkflare.vis.*"
+				xmlns:mappers="sparkflare.mappers.*"
+				xmlns:layouts="sparkflare.layouts.*"
+				alpha.disabled="0.5"
+			  height="600"
+				>
+	
+	<fx:Metadata>[HostComponent("com.juiceanalytics.fantasytracker.teamDisplay.view.TeamContainer")]</fx:Metadata>
+    
+	<fx:Script>
+		<![CDATA[
+			import com.juiceanalytics.fantasytracker.model.FantasyManager;
+			import com.juiceanalytics.fantasytracker.model.FantasyPlayer;
+		]]>
+	</fx:Script>
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+    </s:states>
+    
+    <!--
+        Note: setting the minimum size to 0 here so that changes to the host component's
+        size will not be thwarted by this skin part's minimum size.   This is a compromise,
+        more about it here: http://bugs.adobe.com/jira/browse/SDK-21143
+    -->
+    <!--- @copy spark.components.SkinnableContainer#contentGroup -->
+    <s:Group id="contentGroup" left="0" right="0" top="0" bottom="0" minWidth="0" minHeight="0">
+
+			<s:Button click="{(hostComponent.team.getItemAt(0) as FantasyPlayer).currentPoints += 4}"/>
+			
+			<vis:VisualizationDataGroup id="vizDataGroup" dataProvider="{hostComponent.team}" itemRenderer="com.juiceanalytics.fantasytracker.teamDisplay.view.renderers.PlayerDisplay" width="125" bottom="30">
+				<mappers:MapperChain>
+					<layouts:StackedBarLayout sizeField="data.projectedPoints" currentField="data.currentPoints"/>
+				</mappers:MapperChain>
+			</vis:VisualizationDataGroup>
+			
+			<s:Label text="{hostComponent.team.teamName + ' ' + hostComponent.team.getPoints()}" fontSize="22" fontWeight="bold" bottom="0"/>
+			</s:Group>
+
+</s:Skin>

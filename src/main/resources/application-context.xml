@@ -20,35 +20,8 @@
     <object id="eventHandlerProcessor"
             class="org.springextensions.actionscript.ioc.factory.config.EventHandlerMetaDataPostProcessor"/>
 
-
-    <!--
-        Instantiate and register our application model here so other parts of the app
-        can have its members (or the instance itself) injected into their own local properties.
-    
-    <object id="appModel" class="org.juicekit.app.treemap.model.AppModel">
-         <property name="url" value="http://media.juiceanalytics.com/census/CENSUS_STATEAGESEX.csv"/>
-         <property name="skinName" value="red"/>
-         <property name="levels">
-         	<array>
-         		<value>STATE</value>
-         		<value>AGE</value>
-         		<value>SEX</value>
-         	</array>
-         </property> 
-         <property name="colorField" value="pctchange__POP2008__POP2000"/>
-         <property name="sizeField" value="POP2000"/>
-         <property name="title" value="Hello David May"/>
-         <property name="colorPalettes">
-         	<array-collection>
-         		<value>bone</value>
-         		<value>RdGy</value>
-         		<value>Greens</value>
-         		<value>Blues</value>
-         	</array-collection>
-         </property>
-    </object>
-
-    -->
+	<object id="fantasyManager" class="com.juiceanalytics.fantasytracker.model.FantasyManager">
+	</object>
 
     <!--
         This class is responsible for application navigation, dispatching server side calls and event handling.

@@ -9,8 +9,13 @@
     <fx:Script>
     <![CDATA[
 			import com.juiceanalytics.fantasytracker.infrastructure.ApplicationPresenter;
-			import com.juiceanalytics.fantasytracker.teamDisplay.view.StackedTeamDisplay;
+			import com.juiceanalytics.fantasytracker.model.FantasyManager;
+			import com.juiceanalytics.fantasytracker.model.FantasyPlayer;
+			import com.juiceanalytics.fantasytracker.model.FantasyTeam;
+			import com.juiceanalytics.fantasytracker.teamDisplay.view.TeamContainer;
 			
+			import mx.binding.utils.ChangeWatcher;
+			import mx.charts.chartClasses.NumericAxis;
 			import mx.controls.Button;
 			import mx.events.FlexEvent;
 			
@@ -41,21 +46,28 @@
          */
         private function onApplicationComplete(event:FlexEvent):void {
             _appContext = new FlexXMLApplicationContext();
-            _appContext.addConfigLocation("../src/main/resources/application-context.xml");
+            _appContext.addConfigLocation("application-context.xml");
             _appContext.addEventListener(Event.COMPLETE, onAppContextLoad);
             _appContext.addEventListener(IOErrorEvent.IO_ERROR, onAppContextFail);
             _appContext.load();
         }
         
         private function onAppContextLoad(event:Event):void {
-            // Instantiate the visual root after the context is initialized.
-//            this.addElement(new FantasyFootballContainer());     
-					this.addElement(new StackedTeamDisplay());
-					this.addElement(new StackedTeamDisplay());
-					this.addElement(new StackedTeamDisplay());
+
+				  var team:FantasyTeam =  new FantasyTeam([new FantasyPlayer('Matt','Schaub','QB','Houston Texans',17,12,0),
+																	new FantasyPlayer('Ray','Rice','RB','Baltimore Ravens',21,9,0),
+																	new FantasyPlayer('Matt','Forte','RB','Chicago Bears',19,0,0),
+																	new FantasyPlayer('Terrell','Owens','WR','Cincinnati Bengals',13,0,0),
+																	new FantasyPlayer('Wes','Welker','WR','New England Patriots',12,6,0),
+																	new FantasyPlayer('Visanthe','Shiancoe','TE','Minnesota Vikings',10,10,0),
+																	new FantasyPlayer('New York','Giants','DEF','New York Giants',10,0,0),
+																	new FantasyPlayer('Adam','Pinateri','K','Indianapolis Colts',9,3,0)]);
+						
+					var tc:TeamContainer = new TeamContainer();
+					tc.team = team;
+					this.addElement(tc);
         }
-        
-        
+			
         private function onAppContextFail(event:Event):void {
             trace("application context load failed");
         }
@@ -63,7 +75,8 @@
     ]]>
     </fx:Script>
     
-    <fx:Style source="com/juiceanalytics/fantasytracker/view/styles/fantasyFootballStyles.css"/>
+	<fx:Style source="com/juiceanalytics/fantasytracker/view/styles/fantasyFootballStyles.css"/>
+	<fx:Style source="com/juiceanalytics/fantasytracker/teamDisplay/view/styles/teamContainerStyles.css"/>
     
 	<s:layout>
 		<s:HorizontalLayout/>

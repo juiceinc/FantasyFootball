@@ -17,11 +17,18 @@ package com.juiceanalytics.fantasytracker.model
 		//
 		//----------------------
 		
+		[Bindable(event="collectionChange")]
 		public function getPoints():Number {
-			return 10;
+			var player:FantasyPlayer;
+			var totalPoints:Number = 0;
+			for each (player in source) 
+			{
+				totalPoints += player.projectedPoints;
+			} 			
+			return totalPoints;
 		}
 		
-		
+		public var teamName:String = 'My Team';
 		
 		public function FantasyTeam(source:Array=null)
 		{
