@@ -1,0 +1,11 @@
+Last 005
+
+005 Make stackbar into component with separate skin. Think about which pieces should be skinparts.
+004 Test animation on stack bar.
+003 Create simple stack bar using sparkflare to visualize a FantasyTeam
+002 Create FantasyTeam data model to track a set of players. Extend from ArrayCollection 
+001 Create FantasyPlayer data model to track performance during the fantasy day
+	It should have player name, player points, minutes elapsed, player expected total points
+
+———————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
