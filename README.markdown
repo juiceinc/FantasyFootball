@@ -1,1 +1,0 @@
-A Treemap that takes configuration from a context file. Requires Spring Actionscript.
