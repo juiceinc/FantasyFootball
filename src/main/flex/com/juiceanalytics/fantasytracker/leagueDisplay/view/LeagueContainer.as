@@ -1,5 +1,15 @@
-package leagueDisplay.view
+package com.juiceanalytics.fantasytracker.leagueDisplay.view
 {
+	import com.juiceanalytics.fantasytracker.model.FantasyManager;
+	import com.juiceanalytics.fantasytracker.model.League;
+	
+	import flash.events.Event;
+	
+	import mx.controls.Alert;
+	
+	import spark.components.DataGroup;
+	import spark.components.Group;
+	import spark.components.Label;
 	import spark.components.SkinnableContainer;
 	
 	public class LeagueContainer extends SkinnableContainer
@@ -9,14 +19,30 @@ package leagueDisplay.view
 		// Properties
 		//
 		//------------------------------------------------------------
-
+		
+		//------------------------------
+		// Context
+		//------------------------------
+		private var requiredState:String;
+		
+		[Autowired]
+		[Bindable]
+		public var fantasyManager:FantasyManager = new FantasyManager();
+		
+		[Bindable]
+		public var league:League;
 		
 		//------------------------------
 		// Visual Elements
 		//------------------------------
-		[SkinPart(required='false')]
+		[SkinPart(required='true')]
 		public var leagueName:Label;
 		
+		[SkinPart(required='false')]
+		public var selectedTeamArea:Group;
+		
+		[SkinPart(required='false')]
+		public var comparisonTeamsArea:DataGroup;
 		
 		//------------------------------------------------------------
 		//
@@ -68,7 +94,6 @@ package leagueDisplay.view
 		
 		protected function addedToStageHandler(e:Event):void
 		{
-			
 		}
 		
 		//------------------------------------------------------------

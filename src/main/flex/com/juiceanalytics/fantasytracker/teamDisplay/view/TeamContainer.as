@@ -25,7 +25,6 @@ package com.juiceanalytics.fantasytracker.teamDisplay.view
 		[Bindable]
 		public var fantasyManager:FantasyManager = new FantasyManager();
 		
-		
 		[Bindable]
 		public var team:FantasyTeam;
 		

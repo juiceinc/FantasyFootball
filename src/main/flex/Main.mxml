@@ -1,85 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
-               xmlns:s="library://ns.adobe.com/flex/spark" 
-               xmlns:mx="library://ns.adobe.com/flex/mx" 
-               minWidth="955" minHeight="600" 
-               backgroundColor="white" 
-               applicationComplete="onApplicationComplete(event)" xmlns:view="com.juiceanalytics.fantasytracker.teamDisplay.view.*">
-    
-    <fx:Script>
-    <![CDATA[
+							 xmlns:s="library://ns.adobe.com/flex/spark" 
+							 xmlns:mx="library://ns.adobe.com/flex/mx" 
+							 xmlns:view="com.juiceanalytics.fantasytracker.teamDisplay.view.*"
+							 minWidth="955" 
+							 minHeight="600" 
+							 backgroundColor="white" 
+							 applicationComplete="onApplicationComplete(event)">
+	
+	<fx:Script>
+		<![CDATA[
 			import com.juiceanalytics.fantasytracker.infrastructure.ApplicationPresenter;
-			import com.juiceanalytics.fantasytracker.model.FantasyManager;
+			import com.juiceanalytics.fantasytracker.leagueDisplay.view.LeagueContainer;
 			import com.juiceanalytics.fantasytracker.model.FantasyPlayer;
 			import com.juiceanalytics.fantasytracker.model.FantasyTeam;
-			import com.juiceanalytics.fantasytracker.teamDisplay.view.TeamContainer;
+			import com.juiceanalytics.fantasytracker.model.League;
 			
-			import mx.binding.utils.ChangeWatcher;
-			import mx.charts.chartClasses.NumericAxis;
-			import mx.controls.Button;
 			import mx.events.FlexEvent;
 			
 			import org.springextensions.actionscript.context.support.FlexXMLApplicationContext;
 			import org.springextensions.actionscript.ioc.factory.config.EventHandlerMetaDataPostProcessor;
 			import org.springextensions.actionscript.stage.DefaultAutowiringStageProcessor;
-        
-        
-        /**
-         * Force the compiler to include the code for classes created in the context.
-         */
-        private var _compiledClasses:Array = [
-            DefaultAutowiringStageProcessor, 
-            EventHandlerMetaDataPostProcessor,
-            // Add necessary presenters
-            ApplicationPresenter
-        ];
-        
-        /**
-         * Holds a reference to the application context.
-         */
-        private var _appContext:FlexXMLApplicationContext;
-        
-        
-        /**
-         * Instantiate the application context after the Flex framework is created.
-         * This approach helps limit the initial loading screen time.
-         */
-        private function onApplicationComplete(event:FlexEvent):void {
-            _appContext = new FlexXMLApplicationContext();
-            _appContext.addConfigLocation("application-context.xml");
-            _appContext.addEventListener(Event.COMPLETE, onAppContextLoad);
-            _appContext.addEventListener(IOErrorEvent.IO_ERROR, onAppContextFail);
-            _appContext.load();
-        }
-        
-        private function onAppContextLoad(event:Event):void {
-
-				  var team:FantasyTeam =  new FantasyTeam([new FantasyPlayer('Matt','Schaub','QB','Houston Texans',17,12,0),
-																	new FantasyPlayer('Ray','Rice','RB','Baltimore Ravens',21,9,0),
-																	new FantasyPlayer('Matt','Forte','RB','Chicago Bears',19,0,0),
-																	new FantasyPlayer('Terrell','Owens','WR','Cincinnati Bengals',13,0,0),
-																	new FantasyPlayer('Wes','Welker','WR','New England Patriots',12,6,0),
-																	new FantasyPlayer('Visanthe','Shiancoe','TE','Minnesota Vikings',10,10,0),
-																	new FantasyPlayer('New York','Giants','DEF','New York Giants',10,0,0),
-																	new FantasyPlayer('Adam','Pinateri','K','Indianapolis Colts',9,3,0)]);
-						
-					var tc:TeamContainer = new TeamContainer();
-					tc.team = team;
-					this.addElement(tc);
-        }
 			
-        private function onAppContextFail(event:Event):void {
-            trace("application context load failed");
-        }
-        
-    ]]>
-    </fx:Script>
-    
+			/**
+			 * Force the compiler to include the code for classes created in the context.
+			 */
+			private var _compiledClasses:Array = [
+				DefaultAutowiringStageProcessor, 
+				EventHandlerMetaDataPostProcessor,
+				// Add necessary presenters
+				ApplicationPresenter
+			];
+			
+			/**
+			 * Holds a reference to the application context.
+			 */
+			private var _appContext:FlexXMLApplicationContext;
+			
+			
+			/**
+			 * Instantiate the application context after the Flex framework is created.
+			 * This approach helps limit the initial loading screen time.
+			 */
+			private function onApplicationComplete(event:FlexEvent):void {
+				_appContext = new FlexXMLApplicationContext();
+				_appContext.addConfigLocation("application-context.xml");
+				_appContext.addEventListener(Event.COMPLETE, onAppContextLoad);
+				_appContext.addEventListener(IOErrorEvent.IO_ERROR, onAppContextFail);
+				_appContext.load();
+			}
+			
+			private function onAppContextLoad(event:Event):void {
+				
+				var team1:FantasyTeam =  new FantasyTeam([new FantasyPlayer('Matt','Schaub','QB','Houston Texans',17,12,0),
+					new FantasyPlayer('Ray','Rice','RB','Baltimore Ravens',21,9,0),
+					new FantasyPlayer('Matt','Forte','RB','Chicago Bears',19,0,0),
+					new FantasyPlayer('Terrell','Owens','WR','Cincinnati Bengals',13,0,0),
+					new FantasyPlayer('Wes','Welker','WR','New England Patriots',12,6,0),
+					new FantasyPlayer('Visanthe','Shiancoe','TE','Minnesota Vikings',10,10,0),
+					new FantasyPlayer('New York','Giants','DEF','New York Giants',10,0,0),
+					new FantasyPlayer('Adam','Pinateri','K','Indianapolis Colts',9,3,0)]);
+				
+				var team2:FantasyTeam =  new FantasyTeam([new FantasyPlayer('Matt','Schaub','QB','Houston Texans',17,12,0),
+					new FantasyPlayer('Ray','Rice','RB','Baltimore Ravens',21,9,0),
+					new FantasyPlayer('Matt','Forte','RB','Chicago Bears',19,0,0),
+					new FantasyPlayer('Terrell','Owens','WR','Cincinnati Bengals',13,0,0),
+					new FantasyPlayer('Wes','Welker','WR','New England Patriots',12,6,0),
+					new FantasyPlayer('Visanthe','Shiancoe','TE','Minnesota Vikings',10,10,0),
+					new FantasyPlayer('New York','Giants','DEF','New York Giants',10,0,0),
+					new FantasyPlayer('Adam','Pinateri','K','Indianapolis Colts',9,3,0)]);
+				
+				var team3:FantasyTeam =  new FantasyTeam([new FantasyPlayer('Matt','Schaub','QB','Houston Texans',17,12,0),
+					new FantasyPlayer('Ray','Rice','RB','Baltimore Ravens',21,9,0),
+					new FantasyPlayer('Matt','Forte','RB','Chicago Bears',19,0,0),
+					new FantasyPlayer('Terrell','Owens','WR','Cincinnati Bengals',13,0,0),
+					new FantasyPlayer('Wes','Welker','WR','New England Patriots',12,6,0),
+					new FantasyPlayer('Visanthe','Shiancoe','TE','Minnesota Vikings',10,10,0),
+					new FantasyPlayer('New York','Giants','DEF','New York Giants',10,0,0),
+					new FantasyPlayer('Adam','Pinateri','K','Indianapolis Colts',9,3,0)]);
+				
+				var league:League = new League([team1,team2,team3]);
+				league.leagueName = 'LeagueName';
+				var lc:LeagueContainer = new LeagueContainer();
+				lc.league = league;
+				this.addElement(lc);
+				
+			}
+			
+			private function onAppContextFail(event:Event):void {
+				trace("application context load failed");
+			}
+			
+		]]>
+	</fx:Script>
+	
 	<fx:Style source="com/juiceanalytics/fantasytracker/view/styles/fantasyFootballStyles.css"/>
 	<fx:Style source="com/juiceanalytics/fantasytracker/teamDisplay/view/styles/teamContainerStyles.css"/>
-    
-	<s:layout>
-		<s:HorizontalLayout/>
-	</s:layout>
-		
+	<fx:Style source="com/juiceanalytics/fantasytracker/leagueDisplay/view/styles/leagueContainerStyles.css"/>
+	
 </s:Application>

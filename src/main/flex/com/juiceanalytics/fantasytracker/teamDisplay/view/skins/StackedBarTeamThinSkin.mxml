@@ -6,8 +6,7 @@
 				xmlns:mappers="sparkflare.mappers.*"
 				xmlns:layouts="sparkflare.layouts.*"
 				alpha.disabled="0.5"
-				height="600"
-				>
+				height="600">
 	
 	<fx:Metadata>[HostComponent("com.juiceanalytics.fantasytracker.teamDisplay.view.TeamContainer")]</fx:Metadata>
 	
@@ -30,7 +29,7 @@
 	<!--- @copy spark.components.SkinnableContainer#contentGroup -->
 	<s:Group id="contentGroup" left="0" right="0" top="0" bottom="0" minWidth="0" minHeight="0">
 		
-		<s:Button click="{(hostComponent.team.getItemAt(0) as FantasyPlayer).currentPoints += 4}"/>
+		<!--<s:Button click="{(hostComponent.team.getItemAt(0) as FantasyPlayer).currentPoints += 4}"/>-->
 		
 		<vis:VisualizationDataGroup id="vizDataGroup" dataProvider="{hostComponent.team}" itemRenderer="com.juiceanalytics.fantasytracker.teamDisplay.view.renderers.PlayerDisplayThinRenderer" width="45" bottom="30">
 			<mappers:MapperChain>

@@ -1,6 +1,5 @@
 Last 009
 
-
 009 Create selectedTeam in League
 ———————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 008 Create a LeagueContainer and "area" equal to teamDisplay

@@ -1,9 +1,9 @@
 package com.juiceanalytics.fantasytracker.model
 {
 	import mx.collections.ArrayCollection;
-
+	
 	[Bindable]
-	public class League
+	public class League extends ArrayCollection
 	{
 		//----------------------
 		//
@@ -12,8 +12,12 @@ package com.juiceanalytics.fantasytracker.model
 		//----------------------
 		
 		public var leagueName:String;
-		public var teams:ArrayCollection;
-		public var selectedTeam:FantasyTeam;
+		public var selectedTeamIndex:int;
+		
+		public function get selectedTeam():FantasyTeam 
+		{
+			return this.getItemAt(selectedTeamIndex) as FantasyTeam;
+		}
 		
 		//----------------------
 		//
@@ -21,11 +25,11 @@ package com.juiceanalytics.fantasytracker.model
 		//
 		//----------------------
 		
-		public function League(leagueName:String = null, teams:ArrayCollection = null, selectedTeam:FantasyTeam = null)
+		public function League(source:Array=null)
 		{
+			super(source);
 			this.leagueName = leagueName;
-			this.teams = teams;
-			this.selectedTeam = selectedTeam;
+			this.selectedTeamIndex = selectedTeamIndex;
 		}
 	}
 }
