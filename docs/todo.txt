@@ -1,7 +1,8 @@
-Last 009
+Last 010
 
-009 Create selectedTeam in League
+010 Add popup to PlayerDisplay renderers to show additional information on mouseover
 ———————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+009 Create selectedTeam in League
 008 Create a LeagueContainer and "area" equal to teamDisplay
 007 League model that can store multiple teams
 006 Create "thin" state for StackedBarTeamSkin (30px width)

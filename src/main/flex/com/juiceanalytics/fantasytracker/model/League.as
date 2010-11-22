@@ -41,8 +41,7 @@ package com.juiceanalytics.fantasytracker.model
 		public function League(source:Array=null)
 		{
 			super(source);
-			this.leagueName = leagueName;
-			this.selectedTeamIndex = selectedTeamIndex;
 		}
+		
 	}
 }

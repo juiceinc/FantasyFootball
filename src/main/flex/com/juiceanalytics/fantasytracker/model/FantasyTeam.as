@@ -2,6 +2,7 @@ package com.juiceanalytics.fantasytracker.model
 {
 	import mx.collections.ArrayCollection;
 	
+	[Bindable]
 	public class FantasyTeam extends ArrayCollection
 	{
 		//----------------------
@@ -10,7 +11,7 @@ package com.juiceanalytics.fantasytracker.model
 		//
 		//----------------------
 		
-
+		
 		//----------------------
 		//
 		// Methods 
