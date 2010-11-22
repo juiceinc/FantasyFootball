@@ -17,7 +17,6 @@ package com.juiceanalytics.fantasytracker.model
 		{
 			
 		} 
-			
 		
 		public function FantasyManager()
 		{

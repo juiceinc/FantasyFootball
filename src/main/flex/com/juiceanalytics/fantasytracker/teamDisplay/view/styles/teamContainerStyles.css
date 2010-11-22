@@ -5,5 +5,5 @@
 
 vw|TeamContainer
 {
-	skinClass: ClassReference("com.juiceanalytics.fantasytracker.teamDisplay.view.skins.StackedBarTeamSkin");
+	skinClass: ClassReference("com.juiceanalytics.fantasytracker.teamDisplay.view.skins.StackedBarTeamThinSkin");
 }

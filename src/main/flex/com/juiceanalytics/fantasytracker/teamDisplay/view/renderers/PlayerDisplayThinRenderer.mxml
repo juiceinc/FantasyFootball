@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+								xmlns:s="library://ns.adobe.com/flex/spark" 
+								xmlns:mx="library://ns.adobe.com/flex/mx" 
+								autoDrawBackground="false" width="30">
+	<fx:Script>
+		<![CDATA[
+			import com.juiceanalytics.fantasytracker.model.FantasyPlayer;
+			
+			
+		]]>
+	</fx:Script>
+	
+	<s:Rect id="projectedRect" height="100%" width="100%" bottom="0">
+		<s:fill>
+			<s:SolidColor id="projectionColor" color="#B0DBE9" />
+		</s:fill>
+	</s:Rect>
+	
+	<s:Rect id="currentRect" height="0" width="100%" bottom="0">
+		<s:fill>
+			<s:SolidColor id="currentColor" color="#61B7D4" />
+		</s:fill>
+	</s:Rect>
+	
+	<s:Label text="{(data as FantasyPlayer).position}" bottom="0" visible="{this.height > 20}" color="#ffffff" fontWeight="bold"/>
+	
+</s:ItemRenderer>
