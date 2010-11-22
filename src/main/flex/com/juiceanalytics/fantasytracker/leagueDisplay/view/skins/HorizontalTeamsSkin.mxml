@@ -28,7 +28,7 @@
 				<view:TeamContainer team="{hostComponent.league.selectedTeam}" skinClass="com.juiceanalytics.fantasytracker.teamDisplay.view.skins.StackedBarTeamSkin"/>
 			</s:Group>
 			
-			<s:DataGroup id="comparisonTeamsArea" dataProvider="{hostComponent.league}" itemRenderer="com.juiceanalytics.fantasytracker.leagueDisplay.view.renderers.HorizontalLayout">
+			<s:DataGroup id="comparisonTeamsArea" dataProvider="{hostComponent.league.comparisonTeams}" itemRenderer="com.juiceanalytics.fantasytracker.leagueDisplay.view.renderers.HorizontalLayout">
 				<s:layout>
 					<s:HorizontalLayout/>
 				</s:layout>

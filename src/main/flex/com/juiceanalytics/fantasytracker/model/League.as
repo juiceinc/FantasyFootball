@@ -19,6 +19,19 @@ package com.juiceanalytics.fantasytracker.model
 			return this.getItemAt(selectedTeamIndex) as FantasyTeam;
 		}
 		
+		public function get comparisonTeams():ArrayCollection
+		{
+			var comparisonTeamArray:Array = [];
+			for (var i:int = 0; i<source.length; i++)
+			{
+				if (selectedTeamIndex != i)
+				{
+					comparisonTeamArray.push(source[i]);
+				}
+			}
+			return new ArrayCollection(comparisonTeamArray);
+		}
+		
 		//----------------------
 		//
 		// Methods 
