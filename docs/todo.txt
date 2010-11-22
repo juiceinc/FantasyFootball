@@ -3,8 +3,8 @@ Last 009
 
 009 Create selectedTeam in League
 008 Create a LeagueContainer and "area" equal to teamDisplay
-007 League model that can store multiple teams
 ———————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+007 League model that can store multiple teams
 006 Create "thin" state for StackedBarTeamSkin (30px width)
 005 Make stackbar into component with separate skin. Think about which pieces should be skinparts.
 004 Test animation on stack bar.
