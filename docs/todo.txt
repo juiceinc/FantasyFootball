@@ -1,10 +1,12 @@
-Last 013
+Last 015
 
-013 Add UpdatePlayerDataCommand
-012 Add CleanPlayerDataCommand
-011 Add FetchPlayerDataCommand
-010 Add popup to PlayerDisplay renderers to show additional information on mouseover
+015 Create a player lookup table once player data is read in
+014 Map player stats to definitions
+013 Get live game data given a league ID  
 ———————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+012 Add UpdatePlayerDataCommand
+011 Add CleanPlayerDataCommand
+010 Add FetchPlayerDataCommand
 009 Create selectedTeam in League
 008 Create a LeagueContainer and "area" equal to teamDisplay
 007 League model that can store multiple teams
