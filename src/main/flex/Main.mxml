@@ -44,7 +44,7 @@
 			 */
 			private function onApplicationComplete(event:FlexEvent):void {
 				_appContext = new FlexXMLApplicationContext();
-				_appContext.addConfigLocation("application-context.xml");
+				_appContext.addConfigLocation("../src/main/resources/application-context.xml");
 				_appContext.addEventListener(Event.COMPLETE, onAppContextLoad);
 				_appContext.addEventListener(IOErrorEvent.IO_ERROR, onAppContextFail);
 				_appContext.load();

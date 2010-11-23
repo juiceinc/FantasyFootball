@@ -20,18 +20,14 @@
     <object id="eventHandlerProcessor"
             class="org.springextensions.actionscript.ioc.factory.config.EventHandlerMetaDataPostProcessor"/>
 
-	<object id="fantasyManager" class="com.juiceanalytics.fantasytracker.model.FantasyManager">
-	</object>
-
+	<object id="fantasyManager" class="com.juiceanalytics.fantasytracker.model.FantasyManager"/>
+      
     <!--
         This class is responsible for application navigation, dispatching server side calls and event handling.
         Pass appModel as a constructor argument (Autowiring is supported only in display objects).
     -->
     <object id="applicationPresenter" class="com.juiceanalytics.fantasytracker.infrastructure.ApplicationPresenter">
-    	<!--
-        <constructor-arg ref="appModel"/>
-        -->
+        <constructor-arg ref="fantasyManager"/>
     </object>
-
 
 </objects>

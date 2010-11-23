@@ -1,5 +1,8 @@
-Last 010
+Last 013
 
+013 Add UpdatePlayerDataCommand
+012 Add CleanPlayerDataCommand
+011 Add FetchPlayerDataCommand
 010 Add popup to PlayerDisplay renderers to show additional information on mouseover
 ———————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 009 Create selectedTeam in League
