@@ -1,6 +1,8 @@
 package com.juiceanalytics.fantasytracker.infrastructure
 {
+	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CleanLeagueDataCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CleanPlayerDataCommand;
+	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchLeagueDataCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchPlayerDataCommand;
 	import com.juiceanalytics.fantasytracker.model.FantasyManager;
 	
@@ -34,10 +36,16 @@ package com.juiceanalytics.fantasytracker.infrastructure
 			{
 				this.fantasyManager = fantasyManager;
 				
-				var getData:CompositeCommand = new CompositeCommand(CompositeCommandKind.SEQUENCE);
-				getData.addCommand(new FetchPlayerDataCommand(fantasyManager));
-				getData.addCommand(new CleanPlayerDataCommand(fantasyManager));
-				getData.execute();	
+				var getPlayerData:CompositeCommand = new CompositeCommand(CompositeCommandKind.SEQUENCE);
+				getPlayerData.addCommand(new FetchPlayerDataCommand(fantasyManager,'http://g.espncdn.com/ffl/livescoring/init/all?callback=initFantasyCast&configType=fantasycast&seasonId=2010&scoringPeriodId=9&snapshotId=22400'));
+				getPlayerData.addCommand(new CleanPlayerDataCommand(fantasyManager));
+				getPlayerData.execute();
+				
+				var getLeagueData:CompositeCommand = new CompositeCommand(CompositeCommandKind.SEQUENCE);
+				getLeagueData.addCommand(new FetchLeagueDataCommand(fantasyManager,'http://games.espn.go.com/ffl/livescoring/init/league?leagueId=438369&teamId=7&seasonId=2010&scoringPeriodId=11'));
+				getLeagueData.addCommand(new CleanLeagueDataCommand(fantasyManager));
+				getLeagueData.execute();
+			
 			}
 			
 		}

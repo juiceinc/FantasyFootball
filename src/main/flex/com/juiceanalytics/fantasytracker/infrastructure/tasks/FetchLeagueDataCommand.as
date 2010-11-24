@@ -10,9 +10,8 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 	import org.springextensions.actionscript.core.command.IAsyncCommand;
 	import org.springextensions.actionscript.core.operation.AbstractOperation;
 	
-	public class FetchPlayerDataCommand extends AbstractOperation implements IAsyncCommand
+	public class FetchLeagueDataCommand extends AbstractOperation implements IAsyncCommand
 	{
-		
 		//------------------------------------------------------------
 		//
 		// Properties
@@ -29,23 +28,23 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 		//------------------------------------------------------------
 		
 		public function execute():*
-		{			
+		{
 			var request:URLRequest = new URLRequest(url);
 			request.contentType = "text";
 			
 			var loader:URLLoader = new URLLoader();
 			loader.addEventListener(Event.COMPLETE, onComplete);
 			loader.addEventListener(IOErrorEvent.IO_ERROR, onError);
-			loader.load(request);
-			
+			loader.load(request);			
 			return this;
 		}
 		
-		public function onComplete(e:Event):void {
-			fantasyManager.rawPlayerData = e.target.data as String;	
+		public function onComplete(e:Event):void
+		{
+			fantasyManager.rawLeagueData = e.target.data as String;	
 			dispatchCompleteEvent(e);
 		}
-		
+
 		public function onError(e:Event):void 
 		{
 			dispatchErrorEvent(e);
@@ -57,7 +56,7 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 		//
 		//------------------------------------------------------------
 		
-		public function FetchPlayerDataCommand(fantasyManager:FantasyManager, url:String)
+		public function FetchLeagueDataCommand(fantasyManager:FantasyManager, url:String)
 		{
 			this.fantasyManager = fantasyManager;
 			this.url = url;

@@ -23,7 +23,7 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 				
 		public function execute():*
 		{
-			for (var i:Number = 0; i<manager.data.length; i++)
+			for (var i:Number = 0; i<manager.playerData.length; i++)
 			{
 				//find any players whose stats are needed in this application
 				//update those players' stats
