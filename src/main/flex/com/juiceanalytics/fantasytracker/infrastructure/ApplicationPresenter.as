@@ -37,7 +37,7 @@ package com.juiceanalytics.fantasytracker.infrastructure
 				this.fantasyManager = fantasyManager;
 				
 				var getPlayerData:CompositeCommand = new CompositeCommand(CompositeCommandKind.SEQUENCE);
-				getPlayerData.addCommand(new FetchPlayerDataCommand(fantasyManager,'http://g.espncdn.com/ffl/livescoring/init/all?callback=initFantasyCast&configType=fantasycast&seasonId=2010&scoringPeriodId=9&snapshotId=22400'));
+				getPlayerData.addCommand(new FetchPlayerDataCommand(fantasyManager,fantasyManager.playerUrl.url));
 				getPlayerData.addCommand(new CleanPlayerDataCommand(fantasyManager));
 				getPlayerData.execute();
 				
