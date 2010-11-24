@@ -29,19 +29,28 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 			trace();
 			if (fantasyManager.leagueData)
 			{
-				var playerlookup:Object = fantasyManager.playerData.playerData.players;
+				var allPlayers:Object = fantasyManager.playerData.playerData.players;
+				var i:int = 0;
+				var player:Object;
 				var currentPlayer:Object;
+				var playerLookup:Object = {};
 				
-				
-				for (var i:int = 0; i< fantasyManager.leagueData.teams.length; i++)
+				//cycle through teams
+				for (i; i< fantasyManager.leagueData.teams.length; i++)
 				{
-					var player:*;
+					//Add all players in the currentTeam to the playerLookup object
 					for each (player in fantasyManager.leagueData.teams[i].slots)
 					{
-						currentPlayer = playerlookup[player.pi];
-						var newp:FantasyPlayer = new FantasyPlayer(currentPlayer['fn']);
+						for each (currentPlayer in allPlayers)
+						{
+							if (currentPlayer.pi == player.pi)
+							{
+								playerLookup[player.pi] = currentPlayer;
+							}
+						}
 					}
 				}
+				fantasyManager.playerLookup = playerLookup;
 			}
 			
 			return this;
