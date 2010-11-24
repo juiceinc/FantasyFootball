@@ -26,7 +26,7 @@ package com.juiceanalytics.fantasytracker.model
 		
 		public var leagueData:Object;
 		
-		public var playerLookup:Object;
+		public var playerLookupTable:Object;
 		
 		public var playerUrl:PlayerURL = new PlayerURL();
 		

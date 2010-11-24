@@ -12,8 +12,7 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 		//
 		//------------------------------------------------------------
 		
-		[Autowired]
-		public var manager:FantasyManager;
+		public var fantasyManager:FantasyManager;
 		
 		//------------------------------------------------------------
 		//
@@ -28,6 +27,27 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 				//find any players whose stats are needed in this application
 				//update those players' stats
 			}
+		}
+		
+		public function onComplete(e:Event):void
+		{
+			dispatchCompleteEvent(e);
+		}
+		
+		public function onError(e:Event):void 
+		{
+			dispatchErrorEvent(e);
+		}		
+		//------------------------------------------------------------
+		//
+		// Constructor
+		//
+		//------------------------------------------------------------
+		
+		public function UpdatePlayerDataCommand(fantasyManager:FantasyManager)
+		{
+			this.fantasyManager = fantasyManager;
+			super();
 		}
 		
 	}

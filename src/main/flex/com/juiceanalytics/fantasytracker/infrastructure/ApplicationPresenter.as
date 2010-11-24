@@ -3,6 +3,7 @@ package com.juiceanalytics.fantasytracker.infrastructure
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CleanLeagueDataCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CleanPlayerDataCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CreateFantasyTeamCommand;
+	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CreatePlayerLookupTableCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchLeagueDataCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchPlayerDataCommand;
 	import com.juiceanalytics.fantasytracker.model.FantasyManager;
@@ -41,6 +42,7 @@ package com.juiceanalytics.fantasytracker.infrastructure
 			}
 		}
 		
+		
 		/**
 		 * Catches <code>loadData</code> event, triggers related command
 		 */  
@@ -61,12 +63,25 @@ package com.juiceanalytics.fantasytracker.infrastructure
 			getAllData.addCommand(getPlayerData);
 			getAllData.addCommand(getLeagueData);
 			
-			getAllData.addEventListener(OperationEvent.COMPLETE, createTeams);
+			getAllData.addEventListener(OperationEvent.COMPLETE, createPlayerLookupTable);
 			getAllData.execute();
 		}
 		
+		
 		/**
-		 * Catches <code>createTeams<code> event, triggers related command 
+		 * Catches <code>createPlayerLookupTable</code> event, triggers related command
+		 */
+		[EventHandler]
+		public function createPlayerLookupTable(e:Event=null):void{
+			logger.debug('Trigger command to create PlayerLookupTable');
+			
+			var cmd:CreatePlayerLookupTableCommand = new CreatePlayerLookupTableCommand(fantasyManager);
+			cmd.execute();
+		}
+		
+		
+		/**
+		 * Catches <code>createTeams</code> event, triggers related command 
 		 */
 		[EventHandler]
 		public function createTeams(e:Event=null):void
@@ -77,7 +92,10 @@ package com.juiceanalytics.fantasytracker.infrastructure
 			cmd.execute();			
 		}		
 		
+		
 		[EventHandler(name="loadData")]
+		[EventHandler(name="createPlayerLookupTable")]
+		[EventHandler(name="createTeams")]
 		[EventHandler(name="getSomeOtherMessage")]
 		public function listenToEverythingHandler(e:Event):void
 		{
