@@ -42,7 +42,7 @@ package com.juiceanalytics.fantasytracker.infrastructure
 				getPlayerData.execute();
 				
 				var getLeagueData:CompositeCommand = new CompositeCommand(CompositeCommandKind.SEQUENCE);
-				getLeagueData.addCommand(new FetchLeagueDataCommand(fantasyManager,'http://games.espn.go.com/ffl/livescoring/init/league?leagueId=438369&teamId=7&seasonId=2010&scoringPeriodId=11'));
+				getLeagueData.addCommand(new FetchLeagueDataCommand(fantasyManager,fantasyManager.leagueUrl.url));
 				getLeagueData.addCommand(new CleanLeagueDataCommand(fantasyManager));
 				getLeagueData.execute();
 			

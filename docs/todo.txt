@@ -2,8 +2,8 @@ Last 015
 
 015 Create a player lookup table once player data is read in
 014 Map player stats to definitions
-013 Get live game data given a league ID  
 ———————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+013 Get live game data given a league ID
 012 Add UpdatePlayerDataCommand
 011 Add CleanPlayerDataCommand
 010 Add FetchPlayerDataCommand
