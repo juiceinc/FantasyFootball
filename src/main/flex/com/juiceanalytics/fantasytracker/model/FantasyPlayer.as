@@ -37,13 +37,13 @@ package com.juiceanalytics.fantasytracker.model
 		//
 		//----------------------
 		
-		public function FantasyPlayer(firstName:String, 
-																	lastName:String, 
-																	position:String, 
-																	team:String,
-																	espnFantasyProjection:Number, 
-																	currentPoints:Number, 
-																	currentTime:Number)
+		public function FantasyPlayer(firstName:String = null, 
+																	lastName:String = null, 
+																	position:String = null, 
+																	team:String = null,
+																	espnFantasyProjection:Number = 0, 
+																	currentPoints:Number = 0, 
+																	currentTime:Number = 0)
 		{ 
 			this.firstName = firstName;
 			this.lastName = lastName;

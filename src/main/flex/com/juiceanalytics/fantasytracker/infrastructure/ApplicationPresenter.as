@@ -2,6 +2,7 @@ package com.juiceanalytics.fantasytracker.infrastructure
 {
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CleanLeagueDataCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CleanPlayerDataCommand;
+	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CreateFantasyTeamCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchLeagueDataCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchPlayerDataCommand;
 	import com.juiceanalytics.fantasytracker.model.FantasyManager;
@@ -12,6 +13,7 @@ package com.juiceanalytics.fantasytracker.infrastructure
 	import org.as3commons.logging.LoggerFactory;
 	import org.springextensions.actionscript.core.command.CompositeCommand;
 	import org.springextensions.actionscript.core.command.CompositeCommandKind;
+	import org.springextensions.actionscript.core.operation.OperationEvent;
 	
 	public class ApplicationPresenter
 	{
@@ -35,19 +37,8 @@ package com.juiceanalytics.fantasytracker.infrastructure
 			if (fantasyManager) 
 			{
 				this.fantasyManager = fantasyManager;
-				
-				var getPlayerData:CompositeCommand = new CompositeCommand(CompositeCommandKind.SEQUENCE);
-				getPlayerData.addCommand(new FetchPlayerDataCommand(fantasyManager,fantasyManager.playerUrl.url));
-				getPlayerData.addCommand(new CleanPlayerDataCommand(fantasyManager));
-				getPlayerData.execute();
-				
-				var getLeagueData:CompositeCommand = new CompositeCommand(CompositeCommandKind.SEQUENCE);
-				getLeagueData.addCommand(new FetchLeagueDataCommand(fantasyManager,fantasyManager.leagueUrl.url));
-				getLeagueData.addCommand(new CleanLeagueDataCommand(fantasyManager));
-				getLeagueData.execute();
-			
+				loadData();
 			}
-			
 		}
 		
 		/**
@@ -56,12 +47,35 @@ package com.juiceanalytics.fantasytracker.infrastructure
 		[EventHandler]
 		public function loadData():void
 		{
-			logger.debug("Trigger command to retreive data");
+			logger.debug("Trigger command to load data");
 			
-			//var cmd:ICommand = new FetchTreemapDataFromUrlCommand(_appModel, _appModel.url);
-			//            var cmd:ICommand = new InitializeTreemapCompositeCommand(_appModel);
-			//            cmd.execute();
+			var getPlayerData:CompositeCommand = new CompositeCommand(CompositeCommandKind.SEQUENCE);
+			getPlayerData.addCommand(new FetchPlayerDataCommand(fantasyManager,fantasyManager.playerUrl.url));
+			getPlayerData.addCommand(new CleanPlayerDataCommand(fantasyManager));
+			
+			var getLeagueData:CompositeCommand = new CompositeCommand(CompositeCommandKind.SEQUENCE);
+			getLeagueData.addCommand(new FetchLeagueDataCommand(fantasyManager,fantasyManager.leagueUrl.url));
+			getLeagueData.addCommand(new CleanLeagueDataCommand(fantasyManager));
+			
+			var getAllData:CompositeCommand = new CompositeCommand(CompositeCommandKind.SEQUENCE);
+			getAllData.addCommand(getPlayerData);
+			getAllData.addCommand(getLeagueData);
+			
+			getAllData.addEventListener(OperationEvent.COMPLETE, createTeams);
+			getAllData.execute();
 		}
+		
+		/**
+		 * Catches <code>createTeams<code> event, triggers related command 
+		 */
+		[EventHandler]
+		public function createTeams(e:Event=null):void
+		{
+			logger.debug("Trigger command to create FantasyTeams");
+			
+			var cmd:CreateFantasyTeamCommand = new CreateFantasyTeamCommand(fantasyManager);
+			cmd.execute();			
+		}		
 		
 		[EventHandler(name="loadData")]
 		[EventHandler(name="getSomeOtherMessage")]
@@ -74,8 +88,7 @@ package com.juiceanalytics.fantasytracker.infrastructure
 		 * Tell the presenter to start.
 		 */
 		public function go():void {
-			//            var cmd:ICommand = new InitializeTreemapCompositeCommand(_appModel);
-			//            cmd.execute();
 		}
+		
 	}
 }

@@ -11,7 +11,14 @@
 	<s:states>
 		<s:State name="normal" />
 		<s:State name="disabled" />
+		<fx:Script>
+			<![CDATA[
+				import org.springextensions.actionscript.core.event.EventBus;
+			]]>
+		</fx:Script>
 	</s:states>
+	
+	<s:Button label="Create Team" click="{EventBus.dispatch('loadData')}"/>
 	
 	<!--
 	Note: setting the minimum size to 0 here so that changes to the host component's
@@ -21,7 +28,7 @@
 	<!--- @copy spark.components.SkinnableContainer#contentGroup -->
 	<s:Group id="contentGroup" left="0" right="0" top="0" bottom="0" minWidth="0" minHeight="0">
 		
-		<s:Label id="leagueName" text="{hostComponent.league.leagueName}" fontSize="30" fontWeight="bold"/>
+		<s:Label id="leagueName" top="40" text="{hostComponent.league.leagueName}" fontSize="30" fontWeight="bold"/>
 		
 		<s:HGroup gap="50" top="40">
 			<s:Group id="selectedTeamArea">
