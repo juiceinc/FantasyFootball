@@ -5,6 +5,7 @@ package com.juiceanalytics.fantasytracker.leagueDisplay.view
 	
 	import flash.events.Event;
 	
+	import mx.binding.utils.BindingUtils;
 	import mx.controls.Alert;
 	
 	import spark.components.DataGroup;
@@ -27,7 +28,7 @@ package com.juiceanalytics.fantasytracker.leagueDisplay.view
 		
 		[Autowired]
 		[Bindable]
-		public var fantasyManager:FantasyManager = new FantasyManager();
+		public var fantasyManager:FantasyManager;
 		
 		[Bindable]
 		public var league:League;
@@ -94,6 +95,7 @@ package com.juiceanalytics.fantasytracker.leagueDisplay.view
 		
 		protected function addedToStageHandler(e:Event):void
 		{
+			BindingUtils.bindProperty(this, 'league', fantasyManager, 'league');
 		}
 		
 		//------------------------------------------------------------

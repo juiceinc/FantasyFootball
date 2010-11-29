@@ -2,12 +2,13 @@ package com.juiceanalytics.fantasytracker.infrastructure
 {
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CleanLeagueDataCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CleanPlayerDataCommand;
-	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CreateFantasyTeamCommand;
+	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CreateFantasyLeagueCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CreatePlayerLookupTableCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchLeagueDataCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchPlayerDataCommand;
 	import com.juiceanalytics.fantasytracker.model.FantasyManager;
 	
+	import flash.display.Stage;
 	import flash.events.Event;
 	
 	import org.as3commons.logging.ILogger;
@@ -74,29 +75,27 @@ package com.juiceanalytics.fantasytracker.infrastructure
 		[EventHandler]
 		public function createPlayerLookupTable(e:Event=null):void{
 			logger.debug('Trigger command to create PlayerLookupTable');
-			
 			var cmd:CreatePlayerLookupTableCommand = new CreatePlayerLookupTableCommand(fantasyManager);
+			cmd.addEventListener(OperationEvent.COMPLETE, createLeague);
 			cmd.execute();
 		}
 		
 		
 		/**
-		 * Catches <code>createTeams</code> event, triggers related command 
+		 * Catches <code>createLeague</code> event, triggers related command 
 		 */
 		[EventHandler]
-		public function createTeams(e:Event=null):void
+		public function createLeague(e:Event=null):void
 		{
-			logger.debug("Trigger command to create FantasyTeams");
-			
-			var cmd:CreateFantasyTeamCommand = new CreateFantasyTeamCommand(fantasyManager);
+			logger.debug("Trigger command to create FantasyLeague");
+			var cmd:CreateFantasyLeagueCommand = new CreateFantasyLeagueCommand(fantasyManager);
 			cmd.execute();			
 		}		
 		
 		
 		[EventHandler(name="loadData")]
 		[EventHandler(name="createPlayerLookupTable")]
-		[EventHandler(name="createTeams")]
-		[EventHandler(name="getSomeOtherMessage")]
+		[EventHandler(name="createLeague")]
 		public function listenToEverythingHandler(e:Event):void
 		{
 			logger.debug("caught one of the events");

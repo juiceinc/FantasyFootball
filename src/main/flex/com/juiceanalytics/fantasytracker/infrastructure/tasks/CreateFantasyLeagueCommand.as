@@ -1,13 +1,17 @@
 package com.juiceanalytics.fantasytracker.infrastructure.tasks
 {
 	import com.juiceanalytics.fantasytracker.model.FantasyManager;
+	import com.juiceanalytics.fantasytracker.model.FantasyPlayer;
+	import com.juiceanalytics.fantasytracker.model.FantasyTeam;
+	import com.juiceanalytics.fantasytracker.model.League;
 	
 	import flash.events.Event;
 	
+	import org.juicekit.query.Fn;
 	import org.springextensions.actionscript.core.command.IAsyncCommand;
 	import org.springextensions.actionscript.core.operation.AbstractOperation;
 	
-	public class CreateFantasyTeamCommand extends AbstractOperation implements IAsyncCommand
+	public class CreateFantasyLeagueCommand extends AbstractOperation implements IAsyncCommand
 	{
 		//------------------------------------------------------------
 		//
@@ -25,6 +29,29 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 		
 		public function execute():*
 		{
+			var team:Object;
+			var player:Object;
+			var teamArray:Array = [];
+			
+			for each (team in fantasyManager.leagueData.teams)
+			{ 
+				var fantasyteam:FantasyTeam = new FantasyTeam([]);
+				for each (player in team.slots)
+				{
+					var newPlayer:FantasyPlayer = new FantasyPlayer(fantasyManager.playerLookupTable[player.pi]['fn'],
+																													fantasyManager.playerLookupTable[player.pi]['ln'],
+																													fantasyManager.playerLookupTable[player.pi]['ps'],
+																													fantasyManager.playerLookupTable[player.pi]['pt'],20,14,0);
+					fantasyteam.addItem(newPlayer);
+				}
+				teamArray.push(fantasyteam);
+			}
+			
+			fantasyManager.league = new League(teamArray);
+			
+			
+			
+			
 			return this;
 		}
 		
@@ -45,7 +72,7 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 		//
 		//------------------------------------------------------------
 		
-		public function CreateFantasyTeamCommand(fantasyManager:FantasyManager)
+		public function CreateFantasyLeagueCommand(fantasyManager:FantasyManager)
 		{
 			this.fantasyManager = fantasyManager;
 			super();

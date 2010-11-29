@@ -12,6 +12,7 @@
 		<![CDATA[
 			import com.juiceanalytics.fantasytracker.infrastructure.ApplicationPresenter;
 			import com.juiceanalytics.fantasytracker.leagueDisplay.view.LeagueContainer;
+			import com.juiceanalytics.fantasytracker.model.FantasyManager;
 			import com.juiceanalytics.fantasytracker.model.FantasyPlayer;
 			import com.juiceanalytics.fantasytracker.model.FantasyTeam;
 			import com.juiceanalytics.fantasytracker.model.League;
@@ -52,37 +53,42 @@
 			
 			private function onAppContextLoad(event:Event):void {
 				
-				var team1:FantasyTeam =  new FantasyTeam([new FantasyPlayer('Matt','Schaub','QB','Houston Texans',17,12,0),
-					new FantasyPlayer('Ray','Rice','RB','Baltimore Ravens',21,9,0),
-					new FantasyPlayer('Matt','Forte','RB','Chicago Bears',19,0,0),
-					new FantasyPlayer('Terrell','Owens','WR','Cincinnati Bengals',13,0,0),
-					new FantasyPlayer('Wes','Welker','WR','New England Patriots',12,6,0),
-					new FantasyPlayer('Visanthe','Shiancoe','TE','Minnesota Vikings',10,10,0),
-					new FantasyPlayer('New York','Giants','DEF','New York Giants',10,0,0),
-					new FantasyPlayer('Adam','Pinateri','K','Indianapolis Colts',9,3,0)]);
+				//				var team1:FantasyTeam =  new FantasyTeam([new FantasyPlayer('Matt','Schaub','QB','Houston Texans',17,12,0),
+				//					new FantasyPlayer('Ray','Rice','RB','Baltimore Ravens',21,9,0),
+				//					new FantasyPlayer('Matt','Forte','RB','Chicago Bears',19,0,0),
+				//					new FantasyPlayer('Terrell','Owens','WR','Cincinnati Bengals',13,0,0),
+				//					new FantasyPlayer('Wes','Welker','WR','New England Patriots',12,6,0),
+				//					new FantasyPlayer('Visanthe','Shiancoe','TE','Minnesota Vikings',10,10,0),
+				//					new FantasyPlayer('New York','Giants','DEF','New York Giants',10,0,0),
+				//					new FantasyPlayer('Adam','Pinateri','K','Indianapolis Colts',9,3,0)]);
+				//				
+				//				var team2:FantasyTeam =  new FantasyTeam([new FantasyPlayer('Matt','Schaub','QB','Houston Texans',17,12,0),
+				//					new FantasyPlayer('Ray','Rice','RB','Baltimore Ravens',21,9,0),
+				//					new FantasyPlayer('Matt','Forte','RB','Chicago Bears',19,0,0),
+				//					new FantasyPlayer('Terrell','Owens','WR','Cincinnati Bengals',13,0,0),
+				//					new FantasyPlayer('Wes','Welker','WR','New England Patriots',12,6,0),
+				//					new FantasyPlayer('Visanthe','Shiancoe','TE','Minnesota Vikings',10,10,0),
+				//					new FantasyPlayer('New York','Giants','DEF','New York Giants',10,0,0),
+				//					new FantasyPlayer('Adam','Pinateri','K','Indianapolis Colts',9,3,0)]);
+				//				
+				//				var team3:FantasyTeam =  new FantasyTeam([new FantasyPlayer('Matt','Schaub','QB','Houston Texans',17,12,0),
+				//					new FantasyPlayer('Ray','Rice','RB','Baltimore Ravens',21,9,0),
+				//					new FantasyPlayer('Matt','Forte','RB','Chicago Bears',19,0,0),
+				//					new FantasyPlayer('Terrell','Owens','WR','Cincinnati Bengals',13,0,0),
+				//					new FantasyPlayer('Wes','Welker','WR','New England Patriots',12,6,0),
+				//					new FantasyPlayer('Visanthe','Shiancoe','TE','Minnesota Vikings',10,10,0),
+				//					new FantasyPlayer('New York','Giants','DEF','New York Giants',10,0,0),
+				//					new FantasyPlayer('Adam','Pinateri','K','Indianapolis Colts',9,3,0)]);
+				//				
+				//				var league:League = new League([team1,team2,team3]);
+				//				league.leagueName = 'LeagueName';
+				//				var lc:LeagueContainer = new LeagueContainer();
+				//				lc.league = league;
+				//				this.addElement(lc);
 				
-				var team2:FantasyTeam =  new FantasyTeam([new FantasyPlayer('Matt','Schaub','QB','Houston Texans',17,12,0),
-					new FantasyPlayer('Ray','Rice','RB','Baltimore Ravens',21,9,0),
-					new FantasyPlayer('Matt','Forte','RB','Chicago Bears',19,0,0),
-					new FantasyPlayer('Terrell','Owens','WR','Cincinnati Bengals',13,0,0),
-					new FantasyPlayer('Wes','Welker','WR','New England Patriots',12,6,0),
-					new FantasyPlayer('Visanthe','Shiancoe','TE','Minnesota Vikings',10,10,0),
-					new FantasyPlayer('New York','Giants','DEF','New York Giants',10,0,0),
-					new FantasyPlayer('Adam','Pinateri','K','Indianapolis Colts',9,3,0)]);
 				
-				var team3:FantasyTeam =  new FantasyTeam([new FantasyPlayer('Matt','Schaub','QB','Houston Texans',17,12,0),
-					new FantasyPlayer('Ray','Rice','RB','Baltimore Ravens',21,9,0),
-					new FantasyPlayer('Matt','Forte','RB','Chicago Bears',19,0,0),
-					new FantasyPlayer('Terrell','Owens','WR','Cincinnati Bengals',13,0,0),
-					new FantasyPlayer('Wes','Welker','WR','New England Patriots',12,6,0),
-					new FantasyPlayer('Visanthe','Shiancoe','TE','Minnesota Vikings',10,10,0),
-					new FantasyPlayer('New York','Giants','DEF','New York Giants',10,0,0),
-					new FantasyPlayer('Adam','Pinateri','K','Indianapolis Colts',9,3,0)]);
-				
-				var league:League = new League([team1,team2,team3]);
-				league.leagueName = 'LeagueName';
 				var lc:LeagueContainer = new LeagueContainer();
-				lc.league = league;
+//				lc.league.leagueName = 'League Name';
 				this.addElement(lc);
 				
 			}

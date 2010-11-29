@@ -27,7 +27,6 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 
 		public function execute():*
 		{
-			trace();
 			if (fantasyManager.leagueData)
 			{
 				var allPlayers:Object = fantasyManager.playerData.playerData.players;
@@ -53,8 +52,7 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 				}
 				fantasyManager.playerLookupTable = playerLookupTable;
 			}
-			
-			return this;
+			dispatchCompleteEvent(new Event('complete'));
 			return this;
 		}
 		

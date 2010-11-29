@@ -6,8 +6,6 @@
 	<fx:Script>
 		<![CDATA[
 			import com.juiceanalytics.fantasytracker.model.FantasyPlayer;
-			
-			
 		]]>
 	</fx:Script>
 	
