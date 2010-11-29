@@ -37,21 +37,20 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 			{ 
 				var fantasyteam:FantasyTeam = new FantasyTeam([]);
 				for each (player in team.slots)
-				{
-					var newPlayer:FantasyPlayer = new FantasyPlayer(fantasyManager.playerLookupTable[player.pi]['fn'],
-																													fantasyManager.playerLookupTable[player.pi]['ln'],
-																													fantasyManager.playerLookupTable[player.pi]['ps'],
-																													fantasyManager.playerLookupTable[player.pi]['pt'],20,14,0);
-					fantasyteam.addItem(newPlayer);
+				{ //player.si = 20 means player is on the bench, so do not add them to the FantasyTeam
+					if (player.sl != 20)
+					{ 
+						var newPlayer:FantasyPlayer = new FantasyPlayer(fantasyManager.playerLookupTable[player.pi]['fn'],
+																														fantasyManager.playerLookupTable[player.pi]['ln'],
+																														fantasyManager.playerLookupTable[player.pi]['ps'],
+																														fantasyManager.playerLookupTable[player.pi]['pt'],10,6,0);
+						fantasyteam.addItem(newPlayer);
+					}
 				}
 				teamArray.push(fantasyteam);
 			}
 			
 			fantasyManager.league = new League(teamArray);
-			
-			
-			
-			
 			return this;
 		}
 		
