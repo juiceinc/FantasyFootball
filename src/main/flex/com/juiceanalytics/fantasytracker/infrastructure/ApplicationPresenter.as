@@ -10,6 +10,11 @@ package com.juiceanalytics.fantasytracker.infrastructure
 	
 	import flash.display.Stage;
 	import flash.events.Event;
+	import flash.events.TimerEvent;
+	import flash.profiler.showRedrawRegions;
+	import flash.utils.Timer;
+	
+	import mx.controls.Alert;
 	
 	import org.as3commons.logging.ILogger;
 	import org.as3commons.logging.LoggerFactory;
@@ -89,13 +94,33 @@ package com.juiceanalytics.fantasytracker.infrastructure
 		{
 			logger.debug("Trigger command to create FantasyLeague");
 			var cmd:CreateFantasyLeagueCommand = new CreateFantasyLeagueCommand(fantasyManager);
+			cmd.addEventListener(OperationEvent.COMPLETE, startTimer);
 			cmd.execute();			
 		}		
 		
+		/**
+		 * Catches <code>startTimer</code> event, triggers related command
+		 */
+		[EventHandler]
+		public function startTimer(e:Event=null):void
+		{
+			logger.debug("Trigger command to start Timer");
+			
+			var timer:Timer = new Timer(1000);
+			timer.addEventListener(TimerEvent.TIMER,updateTimeValue);
+			timer.start();
+//			Alert.show('startTimer');
+		}
+		
+		public function updateTimeValue(e:TimerEvent):void
+		{
+			fantasyManager.seconds +=1;
+		}
 		
 		[EventHandler(name="loadData")]
 		[EventHandler(name="createPlayerLookupTable")]
 		[EventHandler(name="createLeague")]
+		[EventHandler(name="startTimer")]
 		public function listenToEverythingHandler(e:Event):void
 		{
 			logger.debug("caught one of the events");

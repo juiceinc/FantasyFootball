@@ -4,7 +4,7 @@
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
 				xmlns:view="com.juiceanalytics.fantasytracker.teamDisplay.view.*"
-				alpha.disabled="0.5">
+				alpha.disabled="0.5" xmlns:mx="library://ns.adobe.com/flex/mx">
 	
 	<fx:Metadata>[HostComponent("com.juiceanalytics.fantasytracker.leagueDisplay.view.LeagueContainer")]</fx:Metadata>
 	
@@ -18,7 +18,10 @@
 		</fx:Script>
 	</s:states>
 	
-	<s:Button label="Load Data" click="{EventBus.dispatch('loadData')}"/>
+	<s:HGroup gap="20" verticalAlign="bottom">
+		<s:Button label="Load Data" click="{EventBus.dispatch('loadData')}"/>
+		<s:Label id="time" text="{hostComponent.fantasyManager.seconds}" bottom="0" />
+	</s:HGroup>
 	
 	<!--
 	Note: setting the minimum size to 0 here so that changes to the host component's

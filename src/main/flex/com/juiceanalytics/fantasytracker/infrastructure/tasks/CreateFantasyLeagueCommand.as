@@ -52,6 +52,7 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 				teamArray.push(fantasyteam);
 			}
 			fantasyManager.league = new League(teamArray);
+			dispatchCompleteEvent(new Event('complete'));
 			return this;
 		}
 		

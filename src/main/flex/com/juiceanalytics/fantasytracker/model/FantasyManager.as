@@ -34,6 +34,8 @@ package com.juiceanalytics.fantasytracker.model
 		
 		public var leagueUrl:LeagueURL = new LeagueURL();
 		
+		public var seconds:Number = 0;
+		
 		//----------------------
 		//
 		// Methods 
