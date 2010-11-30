@@ -25,15 +25,16 @@ package com.juiceanalytics.fantasytracker.model
 			for each (player in source) 
 			{
 				totalPoints += player.currentPoints;
-			} 			
+			}
 			return totalPoints;
 		}
 		
-		public var teamName:String = 'My Team';
+		public var teamName:String;
 		
-		public function FantasyTeam(source:Array=null)
+		public function FantasyTeam(source:Array=null, teamName:String = '')
 		{
 			super(source);
+			this.teamName = teamName;
 		}
 	}
 }

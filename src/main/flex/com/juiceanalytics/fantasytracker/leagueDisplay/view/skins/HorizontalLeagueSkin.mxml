@@ -18,7 +18,7 @@
 		</fx:Script>
 	</s:states>
 	
-	<s:Button label="Create Team" click="{EventBus.dispatch('loadData')}"/>
+	<s:Button label="Load Data" click="{EventBus.dispatch('loadData')}"/>
 	
 	<!--
 	Note: setting the minimum size to 0 here so that changes to the host component's

@@ -28,14 +28,14 @@
 	-->
 	<!--- @copy spark.components.SkinnableContainer#contentGroup -->
 	<s:Group id="contentGroup" left="0" right="0" top="0" bottom="0" minWidth="0" minHeight="0">
-
+		
 		<vis:VisualizationDataGroup id="vizDataGroup" dataProvider="{hostComponent.team}" itemRenderer="com.juiceanalytics.fantasytracker.teamDisplay.view.renderers.PlayerDisplayRenderer" width="125" bottom="30">
 			<mappers:MapperChain>
 				<layouts:StackedBarLayout sizeField="data.projectedPoints" currentField="data.currentPoints"/>
 			</mappers:MapperChain>
 		</vis:VisualizationDataGroup>
 		
-		<s:Label text="{hostComponent.team.teamName + ' ' + hostComponent.team.getPoints()}" fontSize="22" fontWeight="bold" bottom="0"/>
+		<s:Label text="{hostComponent.team.teamName + ' ' + hostComponent.team.getPoints()}" fontSize="18" fontWeight="bold" bottom="0"/>
 	</s:Group>
 	
 </s:Skin>

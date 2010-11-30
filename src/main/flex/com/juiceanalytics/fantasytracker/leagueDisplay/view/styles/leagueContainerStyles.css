@@ -5,5 +5,5 @@
 
 vw|LeagueContainer
 {
-	skinClass: ClassReference("com.juiceanalytics.fantasytracker.leagueDisplay.view.skins.HorizontalTeamsSkin");
+	skinClass: ClassReference("com.juiceanalytics.fantasytracker.leagueDisplay.view.skins.HorizontalLeagueSkin");
 }

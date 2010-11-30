@@ -22,17 +22,15 @@ package com.juiceanalytics.fantasytracker.model
 		public var espnFantasyProjection:Number;
 		public var currentTime:Number;
 		
-		//		TODO: keep track of individual game stats
-		//		public var currentStats:FantasyStats = new FantasyStats();
-		
 		public var currentStats:Array;
 		
 		public var pointModel:Array;
 		
 		public function get projectedPoints():Number 
 		{
-			//TODO: calculate a projectedPoints total based on the currentPoints, currentTime, and espnFantasyProjection	
-			//return currentPoints + espnFantasyProjection / 2;
+			//***************************************************************************
+			//  TODO: calculate a projectedPoints total based on the currentPoints, currentTime, and espnFantasyProjection 
+			//***************************************************************************
 			return Math.max(currentPoints, espnFantasyProjection);
 		}
 		
@@ -51,7 +49,6 @@ package com.juiceanalytics.fantasytracker.model
 			}
 			return playerScore;
 		}
-		
 		
 		//----------------------
 		//
