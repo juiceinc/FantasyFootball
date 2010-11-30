@@ -76,8 +76,8 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 		
 		public function CreatePlayerLookupTableCommand(fantasyManager:FantasyManager)
 		{
-			this.fantasyManager = fantasyManager;
 			super();
+			this.fantasyManager = fantasyManager;
 		}
 		
 	

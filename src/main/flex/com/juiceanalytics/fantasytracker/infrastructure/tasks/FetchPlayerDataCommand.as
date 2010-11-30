@@ -59,9 +59,9 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 		
 		public function FetchPlayerDataCommand(fantasyManager:FantasyManager, url:String)
 		{
+			super();
 			this.fantasyManager = fantasyManager;
 			this.url = url;
-			super();
 		}
 		
 	}

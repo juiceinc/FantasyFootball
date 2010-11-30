@@ -46,8 +46,8 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 		
 		public function UpdatePlayerDataCommand(fantasyManager:FantasyManager)
 		{
-			this.fantasyManager = fantasyManager;
 			super();
+			this.fantasyManager = fantasyManager;
 		}
 		
 	}

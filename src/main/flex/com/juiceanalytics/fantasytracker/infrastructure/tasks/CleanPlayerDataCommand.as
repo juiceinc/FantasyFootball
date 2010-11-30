@@ -52,8 +52,8 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 		
 		public function CleanPlayerDataCommand(fantasyManager:FantasyManager)
 		{
-			this.fantasyManager = fantasyManager;
 			super();
+			this.fantasyManager = fantasyManager;
 		}
 	}
 }
