@@ -41,7 +41,8 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 			return this;
 		}
 		
-		public function onComplete(e:Event):void {
+		public function onComplete(e:Event):void 
+		{
 			fantasyManager.rawPlayerData = e.target.data as String;	
 			dispatchCompleteEvent(e);
 		}

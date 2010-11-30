@@ -5,16 +5,13 @@ package com.juiceanalytics.fantasytracker.infrastructure
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CreateFantasyLeagueCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CreatePlayerLookupTableCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchLeagueDataCommand;
+	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchLiveGameDataCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchPlayerDataCommand;
 	import com.juiceanalytics.fantasytracker.model.FantasyManager;
 	
-	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.TimerEvent;
-	import flash.profiler.showRedrawRegions;
 	import flash.utils.Timer;
-	
-	import mx.controls.Alert;
 	
 	import org.as3commons.logging.ILogger;
 	import org.as3commons.logging.LoggerFactory;
@@ -109,13 +106,23 @@ package com.juiceanalytics.fantasytracker.infrastructure
 			var timer:Timer = new Timer(1000);
 			timer.addEventListener(TimerEvent.TIMER,updateTimeValue);
 			timer.start();
-//			Alert.show('startTimer');
 		}
 		
 		public function updateTimeValue(e:TimerEvent):void
 		{
 			fantasyManager.seconds +=1;
 		}
+		
+		/**
+		 * Catches <code>getLiveData</code> event, triggers related command 
+		 */
+		public function getLiveData(e:Event=null):void
+		{
+			logger.debug("Trigger command to get live game data");
+			var cmd:FetchLiveGameDataCommand = new FetchLiveGameDataCommand(fantasyManager, 'www.websiteurlgoeshere.com');
+			cmd.execute();
+		}
+		
 		
 		[EventHandler(name="loadData")]
 		[EventHandler(name="createPlayerLookupTable")]

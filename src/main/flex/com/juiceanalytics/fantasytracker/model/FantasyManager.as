@@ -22,6 +22,8 @@ package com.juiceanalytics.fantasytracker.model
 		
 		public var rawLeagueData:String;
 		
+		public var rawLiveGameData:String;
+		
 		public var playerData:Object;
 		
 		public var leagueData:Object;
