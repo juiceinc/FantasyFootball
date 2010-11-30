@@ -24,7 +24,7 @@ package com.juiceanalytics.fantasytracker.model
 			var totalPoints:Number = 0;
 			for each (player in source) 
 			{
-				totalPoints += player.projectedPoints;
+				totalPoints += player.currentPoints;
 			} 			
 			return totalPoints;
 		}

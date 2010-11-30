@@ -43,10 +43,10 @@ package com.juiceanalytics.fantasytracker.model
 			
 			if (currentStats)
 			{
-				for (id in currentStats[0]) 
+				for (id in currentStats[0].stats) 
 				{
 					var intId:int = int(id);
-					playerScore += currentStats[0][id] * pointModel[intId];
+					playerScore += currentStats[0].stats[id] * pointModel[intId];
 				}
 			}
 			return playerScore;
