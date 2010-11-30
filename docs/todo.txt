@@ -3,10 +3,10 @@ Last 022
 022 Create timed command to pull data from consecutive time periods to view visualization over time
 021 Create PositionID to PositionDescription lookup table
 020 Ensure that CreateFantasyLeagueCommand is only called once per data loading cycle
+———————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 019 Get total current points for a team
 018 Get total current points for a player
 017 Map player stats to definitions
-———————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 016 Filter out players that are on the bench
 015 Create a new FantasyLeague Object with data from LeagueURL
 014 Create a player lookup table once player data is loaded

@@ -13,7 +13,8 @@ package com.util
 			if (fantasyTeam.length && multiplierArray.length)
 			{
 				var teamScore:Number = 0;
-				for each (player:FantasyPlayer in fantasyTeam)
+				var player:FantasyPlayer;
+				for each (player in fantasyTeam)
 				{
 					teamScore += calculatePlayerPoints(player,multiplierArray);
 				}
@@ -32,9 +33,9 @@ package com.util
 			// There are 155 possible stats that ESPN keeps track of for each player
 			for (var i:int = 0; i < 156; i++)
 			{
-				if (player.currentStats.hasOwnProperty(i)  && multiplierArray.hasOwnProperty(i))
+				if (player.currentStats[0].hasOwnProperty(i)  && multiplierArray.hasOwnProperty(i))
 				{
-					finalScore += player.currentStats[i] * mulitplierArray[i];
+					playerScore += player.currentStats[0][i] * multiplierArray[i];
 				}
 			}
 			return playerScore; 

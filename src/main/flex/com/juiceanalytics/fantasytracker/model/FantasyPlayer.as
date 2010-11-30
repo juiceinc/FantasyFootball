@@ -1,8 +1,10 @@
 package com.juiceanalytics.fantasytracker.model
 {
+	import com.util.FantasyPointCalculator;
+	
 	import mx.binding.utils.BindingUtils;
 	import mx.binding.utils.ChangeWatcher;
-
+	
 	[Bindable]
 	public class FantasyPlayer
 	{
@@ -18,18 +20,38 @@ package com.juiceanalytics.fantasytracker.model
 		public var team:String;
 		
 		public var espnFantasyProjection:Number;
-		public var currentPoints:Number;
 		public var currentTime:Number;
 		
-		//TODO: keep track of individual game stats
-		public var currentStats:FantasyStats = new FantasyStats();
+		//		TODO: keep track of individual game stats
+		//		public var currentStats:FantasyStats = new FantasyStats();
 		
-		public function get projectedPoints():Number {
-			
+		public var currentStats:Array;
+		
+		public var pointModel:Array;
+		
+		public function get projectedPoints():Number 
+		{
 			//TODO: calculate a projectedPoints total based on the currentPoints, currentTime, and espnFantasyProjection	
 			//return currentPoints + espnFantasyProjection / 2;
 			return Math.max(currentPoints, espnFantasyProjection);
 		}
+		
+		public function get currentPoints():Number 
+		{
+			var playerScore:Number = 0;
+			var id:String;
+			
+			if (currentStats)
+			{
+				for (id in currentStats[0]) 
+				{
+					var intId:int = int(id);
+					playerScore += currentStats[0][id] * pointModel[intId];
+				}
+			}
+			return playerScore;
+		}
+		
 		
 		//----------------------
 		//
@@ -41,18 +63,20 @@ package com.juiceanalytics.fantasytracker.model
 																	lastName:String = null, 
 																	position:String = null, 
 																	team:String = null,
+																	currentStats:Array = null,
+																	pointModel:Array = null,
 																	espnFantasyProjection:Number = 0, 
-																	currentPoints:Number = 0, 
 																	currentTime:Number = 0)
 		{ 
 			this.firstName = firstName;
 			this.lastName = lastName;
 			this.position = position;
 			this.team = team;
+			this.currentStats = currentStats;
+			this.pointModel = pointModel;
 			this.espnFantasyProjection = espnFantasyProjection;
-			this.currentPoints = currentPoints;
 			this.currentTime = currentTime;
 		}
-
+		
 	}
 }

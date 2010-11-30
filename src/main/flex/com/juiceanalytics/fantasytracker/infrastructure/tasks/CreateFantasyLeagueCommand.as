@@ -43,14 +43,16 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 						var newPlayer:FantasyPlayer = new FantasyPlayer(fantasyManager.playerLookupTable[player.pi]['fn'],
 																														fantasyManager.playerLookupTable[player.pi]['ln'],
 																														fantasyManager.playerLookupTable[player.pi]['ps'],
-																														fantasyManager.playerLookupTable[player.pi]['pt'],10,6,0);
+																														fantasyManager.playerLookupTable[player.pi]['pt'],
+																													  fantasyManager.playerLookupTable[player.pi]['gs'],
+																														fantasyManager.leagueData['statPointValues'], 10,0);
 						fantasyteam.addItem(newPlayer);
 					}
 				}
 				teamArray.push(fantasyteam);
 			}
-			
 			fantasyManager.league = new League(teamArray);
+			
 			return this;
 		}
 		
