@@ -5,10 +5,10 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 	
 	import flash.events.Event;
 	
-	import org.springextensions.actionscript.core.command.IAsyncCommand;
+	import org.springextensions.actionscript.core.command.ICommand;
 	import org.springextensions.actionscript.core.operation.AbstractOperation;
 	
-	public class CleanLeagueDataCommand extends AbstractOperation implements IAsyncCommand
+	public class CleanLeagueDataCommand extends AbstractOperation implements ICommand
 	{
 		//------------------------------------------------------------
 		//
@@ -29,16 +29,6 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 			fantasyManager.leagueData = JSON.decode(fantasyManager.rawLeagueData , false, false);
 			dispatchCompleteEvent(new Event('complete'));
 			return this;
-		}
-		
-		public function onComplete(e:Event):void
-		{
-			dispatchCompleteEvent(e);
-		}
-		
-		public function onError(e:Event):void
-		{
-			dispatchErrorEvent(e);
 		}
 		
 		//------------------------------------------------------------

@@ -13,13 +13,14 @@ package com.juiceanalytics.fantasytracker.model
 		
 		public var seasonId:String = '2010';
 		
-		public var scoringPeriodId:String = '9';
+		public var scoringPeriodId:int = 0;
 		
 		public var snapshotId:String = '22400';
 		
 		public function get url():String 
 		{
-			return BASE_URL + 'configType=' + configType + '&seasonId=' + seasonId + '&scoringPeriodId=' + scoringPeriodId + '&snapshotId=' + snapshotId;
+			//http://g.espncdn.com/ffl/livescoring/init/all?callback=initFantasyCast&configType=fantasycast&seasonId=2010&scoringPeriodId=12&snapshotId=22400
+			return BASE_URL + 'configType=' + configType + '&seasonId=' + seasonId + '&scoringPeriodId=' + String(scoringPeriodId) + '&snapshotId=' + snapshotId;
 		}
 		
 		//----------------------

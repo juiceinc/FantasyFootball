@@ -2,9 +2,10 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 {
 	import com.juiceanalytics.fantasytracker.model.FantasyManager;
 	
+	import org.springextensions.actionscript.core.command.ICommand;
 	import org.springextensions.actionscript.core.operation.AbstractOperation;
 	
-	public class UpdatePlayerDataCommand extends AbstractOperation
+	public class UpdatePlayerDataCommand extends AbstractOperation implements ICommand
 	{
 		//------------------------------------------------------------
 		//
@@ -27,17 +28,9 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 				//find any players whose stats are needed in this application
 				//update those players' stats
 			}
+			dispatchCompleteEvent(new Event('complete'));
 		}
 		
-		public function onComplete(e:Event):void
-		{
-			dispatchCompleteEvent(e);
-		}
-		
-		public function onError(e:Event):void 
-		{
-			dispatchErrorEvent(e);
-		}		
 		//------------------------------------------------------------
 		//
 		// Constructor

@@ -9,6 +9,7 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 	
 	import org.springextensions.actionscript.core.command.IAsyncCommand;
 	import org.springextensions.actionscript.core.operation.AbstractOperation;
+	import org.springextensions.actionscript.core.operation.OperationEvent;
 	
 	public class FetchLiveGameDataCommand extends AbstractOperation implements IAsyncCommand
 	{
@@ -34,7 +35,7 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 			request.contentType = 'text';
 			
 			var loader:URLLoader = new URLLoader();
-			loader.addEventListener(Event.COMPLETE, onComplete);
+			loader.addEventListener(OperationEvent.COMPLETE, onComplete);
 			loader.addEventListener(IOErrorEvent.IO_ERROR, onError);
 			loader.load(request);
 			

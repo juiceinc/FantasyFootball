@@ -17,6 +17,7 @@ package com.juiceanalytics.fantasytracker.infrastructure
 	import org.as3commons.logging.LoggerFactory;
 	import org.springextensions.actionscript.core.command.CompositeCommand;
 	import org.springextensions.actionscript.core.command.CompositeCommandKind;
+	import org.springextensions.actionscript.core.event.EventBus;
 	import org.springextensions.actionscript.core.operation.OperationEvent;
 	
 	public class ApplicationPresenter
@@ -64,9 +65,13 @@ package com.juiceanalytics.fantasytracker.infrastructure
 			
 			var getAllData:CompositeCommand = new CompositeCommand(CompositeCommandKind.SEQUENCE);
 			getAllData.addCommand(getPlayerData);
-			getAllData.addCommand(getLeagueData);
+			//getAllData.addCommand(getLeagueData);
 			
-			getAllData.addEventListener(OperationEvent.COMPLETE, createPlayerLookupTable);
+			if (!fantasyManager.playerLookupTable)
+			{
+				getAllData.addCommand(getLeagueData);
+				getAllData.addEventListener(OperationEvent.COMPLETE, createPlayerLookupTable);	
+			}
 			getAllData.execute();
 		}
 		
@@ -78,7 +83,10 @@ package com.juiceanalytics.fantasytracker.infrastructure
 		public function createPlayerLookupTable(e:Event=null):void{
 			logger.debug('Trigger command to create PlayerLookupTable');
 			var cmd:CreatePlayerLookupTableCommand = new CreatePlayerLookupTableCommand(fantasyManager);
-			cmd.addEventListener(OperationEvent.COMPLETE, createLeague);
+			if (fantasyManager.playerUrl.scoringPeriodId)
+			{
+				cmd.addEventListener(OperationEvent.COMPLETE, createLeague);	
+			}
 			cmd.execute();
 		}
 		
@@ -91,7 +99,10 @@ package com.juiceanalytics.fantasytracker.infrastructure
 		{
 			logger.debug("Trigger command to create FantasyLeague");
 			var cmd:CreateFantasyLeagueCommand = new CreateFantasyLeagueCommand(fantasyManager);
-			cmd.addEventListener(OperationEvent.COMPLETE, startTimer);
+			if (!fantasyManager.playerUrl.scoringPeriodId)
+			{
+				cmd.addEventListener(OperationEvent.COMPLETE, startTimer);	
+			}
 			cmd.execute();			
 		}		
 		
@@ -103,14 +114,16 @@ package com.juiceanalytics.fantasytracker.infrastructure
 		{
 			logger.debug("Trigger command to start Timer");
 			
-			var timer:Timer = new Timer(1000);
+			var timer:Timer = new Timer(5000);
 			timer.addEventListener(TimerEvent.TIMER,updateTimeValue);
 			timer.start();
 		}
 		
 		public function updateTimeValue(e:TimerEvent):void
 		{
-			fantasyManager.seconds +=1;
+			fantasyManager.seconds +=5;
+			fantasyManager.playerUrl.scoringPeriodId += 1;
+			EventBus.dispatch('loadData');
 		}
 		
 		/**

@@ -2,13 +2,12 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 {
 	import com.juiceanalytics.fantasytracker.model.FantasyManager;
 	
-	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	
-	import org.springextensions.actionscript.core.command.IAsyncCommand;
+	import org.springextensions.actionscript.core.command.ICommand;
 	import org.springextensions.actionscript.core.operation.AbstractOperation;
 	
-	public class CreatePlayerLookupTableCommand extends AbstractOperation implements IAsyncCommand
+	public class CreatePlayerLookupTableCommand extends AbstractOperation implements ICommand
 	{
 
 		//------------------------------------------------------------
@@ -55,18 +54,6 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 			dispatchCompleteEvent(new Event('complete'));
 			return this;
 		}
-		
-		public function onComplete(e:Event):void
-		{
-			dispatchCompleteEvent(e);
-		}
-		
-		public function onError(e:Event):void
-		{
-			dispatchErrorEvent(e);
-		}
-		
-		
 		
 		//------------------------------------------------------------
 		//
