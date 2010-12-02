@@ -13,7 +13,7 @@ package com.juiceanalytics.fantasytracker.model
 		
 		public var seasonId:String = '2010';
 		
-		public var scoringPeriodId:int = 0;
+		public var scoringPeriodId:int = 12; //int(Math.random()*10);
 		
 		public var snapshotId:String = '22400';
 		
