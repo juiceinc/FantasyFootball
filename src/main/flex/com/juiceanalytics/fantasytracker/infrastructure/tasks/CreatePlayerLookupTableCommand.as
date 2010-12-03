@@ -4,6 +4,8 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 	
 	import flash.events.Event;
 	
+	import mx.controls.Alert;
+	
 	import org.springextensions.actionscript.core.command.ICommand;
 	import org.springextensions.actionscript.core.operation.AbstractOperation;
 	
@@ -28,7 +30,21 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 		{
 			if (fantasyManager.leagueData)
 			{
-				var allPlayers:Object = fantasyManager.playerData.playerData.players;
+				//TODO: figure out why data is not being returned in a consitant structure...seems to be nested an extra level on the first pull
+				var allPlayers:Object = {};
+				if (fantasyManager.playerData.hasOwnProperty('playerData'))
+				{
+					allPlayers = fantasyManager.playerData.playerData.players;
+				}
+				else if (fantasyManager.playerData.hasOwnProperty('players'))
+				{
+					allPlayers = fantasyManager.playerData.players;
+				}
+				else{
+					return null;
+					//Alert.show('fantasyManager.playerData was not found');
+				}
+//				var allPlayers:Object = fantasyManager.playerData.playerData.players;
 				var i:int = 0;
 				var player:Object;
 				var currentPlayer:Object;
@@ -49,7 +65,7 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 						}
 					}
 				}
-				fantasyManager.playerLookupTable = playerLookupTable;
+				fantasyManager.playerLookupTable	 = playerLookupTable;
 			}
 			dispatchCompleteEvent(new Event('complete'));
 			return this;

@@ -5,6 +5,6 @@
 								xmlns:view="com.juiceanalytics.fantasytracker.teamDisplay.view.*"
 								autoDrawBackground="false">
 	
-	<view:TeamContainer team="{data}" skinClass="com.juiceanalytics.fantasytracker.teamDisplay.view.skins.StackedBarTeamThinSkin" />
+	<view:TeamContainer team="{data}" skinClass="com.juiceanalytics.fantasytracker.teamDisplay.view.skins.StackedBarTeamSkin" />
 	
 </s:ItemRenderer>

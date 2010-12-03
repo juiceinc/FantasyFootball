@@ -5,7 +5,6 @@ package com.juiceanalytics.fantasytracker.infrastructure
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CreateFantasyLeagueCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CreatePlayerLookupTableCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchLeagueDataCommand;
-	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchLiveGameDataCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchPlayerDataCommand;
 	import com.juiceanalytics.fantasytracker.model.FantasyManager;
 	
@@ -31,6 +30,12 @@ package com.juiceanalytics.fantasytracker.infrastructure
 		private static var logger:ILogger = LoggerFactory.getClassLogger(ApplicationPresenter);
 		public var fantasyManager:FantasyManager;
 		
+		public var fileNum:Number = 2138;
+		public var fileURL:String = 'data/fantasycast/log20101202_' + String(fileNum) + '.txt';
+
+		public var startTime:Boolean = true;
+		public var timer:Timer = new Timer(5000);
+		
 		//----------------------
 		//
 		// Methods 
@@ -44,6 +49,23 @@ package com.juiceanalytics.fantasytracker.infrastructure
 				this.fantasyManager = fantasyManager;
 				loadData();
 			}
+		}
+		
+		
+		/**
+		 * Catches <code>reloadData</code> event, triggers related command
+		 */  
+		[EventHandler]
+		public function reloadData():void
+		{
+			logger.debug("Trigger command to reload data");
+			fileNum+=30;
+			fileURL = 'data/fantasycast/log20101202_' + fileNum + '.txt';
+			var getPlayerData:CompositeCommand = new CompositeCommand(CompositeCommandKind.SEQUENCE);
+			getPlayerData.addCommand(new FetchPlayerDataCommand(fantasyManager,fileURL));
+			getPlayerData.addCommand(new CleanPlayerDataCommand(fantasyManager));
+			getPlayerData.addEventListener(OperationEvent.COMPLETE, createPlayerLookupTable);
+			getPlayerData.execute();
 		}
 		
 		
@@ -91,7 +113,7 @@ package com.juiceanalytics.fantasytracker.infrastructure
 		{
 			logger.debug("Trigger command to create FantasyLeague");
 			var cmd:CreateFantasyLeagueCommand = new CreateFantasyLeagueCommand(fantasyManager);
-//			cmd.addEventListener(OperationEvent.COMPLETE, startTimer);	
+			if (startTime) cmd.addEventListener(OperationEvent.COMPLETE, startTimer);
 			cmd.execute();			
 		}		
 		
@@ -102,26 +124,28 @@ package com.juiceanalytics.fantasytracker.infrastructure
 		public function startTimer(e:Event=null):void
 		{
 			logger.debug("Trigger command to start Timer");
-			var timer:Timer = new Timer(5000);
+			startTime = false;
 			timer.addEventListener(TimerEvent.TIMER,updateTimeValue);
 			timer.start();
 		}
+
+		/**
+		 * Catches <code>endTimer</code> event, triggers related command
+		 */
+		[EventHandler]
+		public function endTimer(e:Event=null):void
+		{
+			logger.debug("Trigger command to end Timer");
+			startTime = true;
+			timer.stop();
+		}		
+		
 		
 		public function updateTimeValue(e:TimerEvent):void
 		{
 			fantasyManager.seconds +=5;
-			fantasyManager.playerUrl.scoringPeriodId += 1;
-			EventBus.dispatch('loadData');
-		}
-		
-		/**
-		 * Catches <code>getLiveData</code> event, triggers related command 
-		 */
-		public function getLiveData(e:Event=null):void
-		{
-			logger.debug("Trigger command to get live game data");
-			var cmd:FetchLiveGameDataCommand = new FetchLiveGameDataCommand(fantasyManager, 'www.websiteurlgoeshere.com');
-			cmd.execute();
+			//fantasyManager.playerUrl.scoringPeriodId += 1;
+			EventBus.dispatch('reloadData');
 		}
 		
 		
