@@ -5,7 +5,6 @@ package com.juiceanalytics.fantasytracker.infrastructure
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CreateFantasyLeagueCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.CreatePlayerLookupTableCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchLeagueDataCommand;
-	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchLiveGameDataCommand;
 	import com.juiceanalytics.fantasytracker.infrastructure.tasks.FetchPlayerDataCommand;
 	import com.juiceanalytics.fantasytracker.model.FantasyManager;
 	
@@ -147,16 +146,6 @@ package com.juiceanalytics.fantasytracker.infrastructure
 			fantasyManager.seconds +=5;
 			//fantasyManager.playerUrl.scoringPeriodId += 1;
 			EventBus.dispatch('reloadData');
-		}
-		
-		/**
-		 * Catches <code>getLiveData</code> event, triggers related command 
-		 */
-		public function getLiveData(e:Event=null):void
-		{
-			logger.debug("Trigger command to get live game data");
-			var cmd:FetchLiveGameDataCommand = new FetchLiveGameDataCommand(fantasyManager, 'www.websiteurlgoeshere.com');
-			cmd.execute();
 		}
 		
 		
