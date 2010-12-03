@@ -11,7 +11,7 @@ package com.juiceanalytics.fantasytracker.model
 		
 		public static const BASE_URL:String = 'http://games.espn.go.com/ffl/livescoring/init/league?';
 		
-		public var leagueId:String = '438367';
+		public var leagueId:String = '438368';
 		
 		public var teamId:String = '7';
 		

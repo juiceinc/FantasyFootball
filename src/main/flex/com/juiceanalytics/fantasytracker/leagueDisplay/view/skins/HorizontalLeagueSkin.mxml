@@ -12,6 +12,7 @@
 		<s:State name="normal" />
 		<s:State name="disabled" />
 		<fx:Script>
+			
 			<![CDATA[
 				import org.springextensions.actionscript.core.event.EventBus;
 			]]>
@@ -19,7 +20,8 @@
 	</s:states>
 	
 	<s:HGroup gap="20" verticalAlign="bottom">
-		<s:Button label="Load Data" click="{EventBus.dispatch('loadData')}"/>
+		<s:Button label="Load Data" click="{EventBus.dispatch('reloadData')}"/>
+		<s:Button label="Stop Loading Data" click="{EventBus.dispatch('endTimer')}"/>
 		<s:Label id="time" text="{hostComponent.fantasyManager.seconds}" bottom="0" />
 	</s:HGroup>
 	

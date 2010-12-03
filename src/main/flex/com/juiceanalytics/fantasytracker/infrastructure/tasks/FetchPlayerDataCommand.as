@@ -7,6 +7,8 @@ package com.juiceanalytics.fantasytracker.infrastructure.tasks
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
+	import mx.controls.Alert;
+	
 	import org.springextensions.actionscript.core.command.IAsyncCommand;
 	import org.springextensions.actionscript.core.operation.AbstractOperation;
 	
